@@ -39,10 +39,9 @@ class Settings extends TargetContainer
         $this->memcached = $memcached;
 
         $this->env = $kernel->getEnvironment();
-        // TODO reactivate following two lines code
+
         if($this->env == 'dev') {
-            $this->env = 'prod_test';
-            //$this->enabled = false;
+            $this->enabled = false;
         }
     }
 
