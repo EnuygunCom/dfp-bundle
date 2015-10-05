@@ -1,6 +1,8 @@
 Enuygun Dfp Bundle
 ==================
 
+This bundle is used to manage DFP ad display settings. Reduces the number of redundant ad requests made to the DFP servers.
+
 This document contains information on how to download, install, and start
 using Enuygun Dfp Bundle.
 
@@ -72,7 +74,7 @@ You will be needing a dfp_settings table:
     // app/views/base.html.twig
     <head>
         ...
-        <!-- NodrewDfpBundle Control Code -->
+        <!-- DfpBundle Control Code -->
     </head>
     
 ### Call add units from twig
@@ -102,3 +104,7 @@ You will be needing a dfp_settings table:
 ### PageSkin Ad Unit
 
     {{ dfp_scroll_ad_unit('EnuygunCom_1200x600', [1200, 600], 'page_skin') }}
+
+
+
+Note: This bundle is inspired of NodrewDfpBundle.
