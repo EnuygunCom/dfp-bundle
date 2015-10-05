@@ -220,8 +220,6 @@ BLOCK;
         return <<< BLOCK
 \ngoogletag.pubads().enableSingleRequest();
 googletag.enableServices();
-console.log('Dfp Ads initialized!');
-
 });
 </script>
 BLOCK;
