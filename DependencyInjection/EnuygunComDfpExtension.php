@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class EnuygunDfpExtension extends Extension
+class EnuygunComDfpExtension extends Extension
 {
     /**
      * {@inheritDoc}
