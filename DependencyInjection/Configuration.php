@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('enuyguncom_dfp');
+        $rootNode = $treeBuilder->root('enuygun_com_dfp');
 
         $rootNode
             ->children()

@@ -33,7 +33,7 @@ and then install via composer
 
 Now you need to add the following configuration into config.yml file
 
-    enuygun_dfp:
+    enuygun_com_dfp:
          publisher_id: %your_dfp_publisher_id%
          default_class: ~
          targets:

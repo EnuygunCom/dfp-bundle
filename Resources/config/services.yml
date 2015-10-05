@@ -1,29 +1,29 @@
 parameters:
-    enuyguncom_dfp.control_code_listener.class: EnuygunCom\DfpBundle\EventListener\ControlCodeListener
-    enuyguncom_dfp.collection.class: EnuygunCom\DfpBundle\Model\Collection
-    enuyguncom_dfp.settings.class: EnuygunCom\DfpBundle\Model\Settings
-    enuyguncom_dfp.twig.extension.class: EnuygunCom\DfpBundle\Twig\Extension\DfpExtension
+    enuygun_com_dfp.control_code_listener.class: EnuygunCom\DfpBundle\EventListener\ControlCodeListener
+    enuygun_com_dfp.collection.class: EnuygunCom\DfpBundle\Model\Collection
+    enuygun_com_dfp.settings.class: EnuygunCom\DfpBundle\Model\Settings
+    enuygun_com_dfp.twig.extension.class: EnuygunCom\DfpBundle\Twig\Extension\DfpExtension
 
-    enuyguncom_dfp.publisher_id: ~
-    enuyguncom_dfp.default_div_class: ~
-    enuyguncom_dfp.targets: [ ]
+    enuygun_com_dfp.publisher_id: ~
+    enuygun_com_dfp.default_div_class: ~
+    enuygun_com_dfp.targets: [ ]
 
 services:
-    enuyguncom_dfp.collection:
-        class: %enuyguncom_dfp.collection.class%
+    enuygun_com_dfp.collection:
+        class: %enuygun_com_dfp.collection.class%
 
-    enuyguncom_dfp.settings:
-        class: %enuyguncom_dfp.settings.class%
-        arguments: [%enuyguncom_dfp.publisher_id%, %enuyguncom_dfp.default_div_class%, %enuyguncom_dfp.targets%, @kernel, @doctrine.dbal.default_connection, @memcached_client]
+    enuygun_com_dfp.settings:
+        class: %enuygun_com_dfp.settings.class%
+        arguments: [%enuygun_com_dfp.publisher_id%, %enuygun_com_dfp.default_div_class%, %enuygun_com_dfp.targets%, @kernel, @doctrine.dbal.default_connection, @memcached_client]
 
-    enuyguncom_dfp.control_code_listener:
-        class: %enuyguncom_dfp.control_code_listener.class%
-        arguments: [@enuyguncom_dfp.collection, @enuyguncom_dfp.settings, @kernel]
+    enuygun_com_dfp.control_code_listener:
+        class: %enuygun_com_dfp.control_code_listener.class%
+        arguments: [@enuygun_com_dfp.collection, @enuygun_com_dfp.settings, @kernel]
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse}
 
-    enuyguncom_dfp.twig.extension:
-        class: %enuyguncom_dfp.twig.extension.class%
-        arguments: [@enuyguncom_dfp.settings, @enuyguncom_dfp.collection]
+    enuygun_com_dfp.twig.extension:
+        class: %enuygun_com_dfp.twig.extension.class%
+        arguments: [@enuygun_com_dfp.settings, @enuygun_com_dfp.collection]
         tags:
            - { name: twig.extension }

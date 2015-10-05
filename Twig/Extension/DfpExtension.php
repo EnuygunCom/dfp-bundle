@@ -131,6 +131,6 @@ class DfpExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'enuyguncom_dfp';
+        return 'enuygun_com_dfp';
     }
 }

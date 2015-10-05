@@ -29,8 +29,8 @@ class EnuygunComDfpExtension extends Extension
         $loader->load('services.yml');
 
 
-        $container->setParameter('enuyguncom_dfp.publisher_id', $config['publisher_id']);
-        $container->setParameter('enuyguncom_dfp.default_class', $config['default_class']);
-        $container->setParameter('enuyguncom_dfp.targets', $config['targets']);
+        $container->setParameter('enuygun_com_dfp.publisher_id', $config['publisher_id']);
+        $container->setParameter('enuygun_com_dfp.default_class', $config['default_class']);
+        $container->setParameter('enuygun_com_dfp.targets', $config['targets']);
     }
 }
