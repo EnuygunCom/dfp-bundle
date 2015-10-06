@@ -25,6 +25,7 @@ class Configuration implements ConfigurationInterface
             ->children()
             ->scalarNode('publisher_id')->isRequired()->cannotBeEmpty()->end()
             ->scalarNode('default_class')->defaultValue('dfp-ad-unit')->end()
+            ->scalarNode('cache_lifetime')->defaultValue(300)->end()
             ->variableNode('targets')->end()
             ->end()
         ;

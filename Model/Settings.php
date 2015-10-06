@@ -22,22 +22,25 @@ class Settings extends TargetContainer
     protected $conn;
     protected $memcached;
     protected $cache = array();
+    protected $cacheLifetime;
 
     /**
      * @param int $publisherId
      * @param int $divClass
      * @param array $targets
+     * @param $cacheLifetime
      * @param Kernel $kernel
      * @param Connection $conn
      * @param \Memcached $memcached
      */
-    public function __construct($publisherId, $divClass, array $targets = array(), Kernel $kernel, Connection $conn, \Memcached $memcached)
+    public function __construct($publisherId, $divClass, array $targets, $cacheLifetime, Kernel $kernel, Connection $conn, \Memcached $memcached)
     {
         $this->setPublisherId($publisherId);
         $this->setDivClass($divClass);
         $this->setTargets($targets);
         $this->conn = $conn;
         $this->memcached = $memcached;
+        $this->cacheLifetime = ! empty($cacheLifetime) ? $cacheLifetime : self::CacheLifeTime;
 
         $this->env = $kernel->getEnvironment();
 
@@ -162,7 +165,7 @@ class Settings extends TargetContainer
             $return =  $init ? true : false;
         }
 
-        $this->memcached->set($cacheKey, $return ? 'true' : 'false', self::CacheLifeTime);
+        $this->memcached->set($cacheKey, $return ? 'true' : 'false', $this->cacheLifetime);
 
         $publishSettings[$path] = $return;
 

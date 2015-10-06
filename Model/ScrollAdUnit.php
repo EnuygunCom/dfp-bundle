@@ -22,7 +22,8 @@ class ScrollAdUnit extends AdUnit
         $style  = $this->getStyles();
 
 return <<< RETURN
-<div id="{$this->divId}" class="{$class}" style="$style">
+<div class="{$class}">
+<div id="{$this->divId}">
 <a href="javascript:void(0)" class="scrolldown_ad_close">x</a>
 <script type="text/javascript">
 googletag.cmd.push(function() { googletag.display('{$this->divId}'); });
@@ -54,6 +55,7 @@ googletag.cmd.push(function() {
     });
 });
 </script>
+</div>
 </div>
 RETURN;
     }

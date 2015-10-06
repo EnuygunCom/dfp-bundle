@@ -41,6 +41,7 @@ Now you need to add the following configuration into config.yml file
          targets:
              modul:      'your-project-modul-name'
              sub_modul:  ~
+         cache_lifetime: 300
 
 
 

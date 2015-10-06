@@ -49,10 +49,12 @@ class AdUnit extends TargetContainer implements AdUnitInterface
         $style  = $this->getStyles();
 
         return <<< RETURN
-<div id="{$this->divId}" class="{$class}" style="$style">
+<div class="{$class}">
+<div id="{$this->divId}">
 <script type="text/javascript">
 googletag.cmd.push(function() { googletag.display('{$this->divId}'); });
 </script>
+</div>
 </div>
 RETURN;
     }

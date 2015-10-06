@@ -17,7 +17,8 @@ class PageSkinAdUnit extends AdUnit
         $style  = $this->getStyles();
 
 return <<< RETURN
-<div id="{$this->divId}" class="{$class}" style="$style">
+<div class="{$class}">
+<div id="{$this->divId}">
 <script type="text/javascript">
 googletag.cmd.push(function() { googletag.display('{$this->divId}'); });
 googletag.cmd.push(function() {
@@ -61,6 +62,7 @@ googletag.cmd.push(function() {
     });
 });
 </script>
+</div>
 </div>
 RETURN;
     }
