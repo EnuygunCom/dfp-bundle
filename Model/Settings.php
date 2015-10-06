@@ -197,6 +197,6 @@ class Settings extends TargetContainer
 
     public function applyClass($class)
     {
-        return $this->getDivClass() . (! empty($class) ? ' ' . $class : '');
+        return trim($this->divClass . ' ' . (! empty($class) ? $class : ''));
     }
 }
