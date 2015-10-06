@@ -45,7 +45,7 @@ class AdUnit extends TargetContainer implements AdUnitInterface
      */
     public function output(Settings $settings)
     {
-        $class  = $settings->getDivClass();
+        $class  = $this->getClass($settings->getDivClass());
         $style  = $this->getStyles();
 
         return <<< RETURN
