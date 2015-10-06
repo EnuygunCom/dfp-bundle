@@ -107,7 +107,8 @@ CONTROL;
         return <<< BLOCK
 <script type="text/javascript">
 googletag.cmd.push(function() {
-googletag.defineSlot('/{$publisherId}/{$path}', {$sizes}, '{$divId}').addService(googletag.pubads());
+var _ds = '/', key = _ds + '{$publisherId}' + _ds;
+googletag.defineSlot(key + '{$path}', {$sizes}, '{$divId}').addService(googletag.pubads());
 googletag.pubads().enableSingleRequest();
 googletag.enableServices();{$targets}
 });
@@ -130,7 +131,8 @@ BLOCK;
         return <<< BLOCK
 <script type="text/javascript">
 googletag.cmd.push(function() {
-googletag.defineOutOfPageSlot('/{$publisherId}/{$path}', '{$divId}').addService(googletag.pubads());
+var _ds = '/', key = _ds + '{$publisherId}' + _ds;
+googletag.defineOutOfPageSlot(key + '{$path}', '{$divId}').addService(googletag.pubads());
 googletag.pubads().enableSingleRequest();
 googletag.enableServices();{$targets}
 });
@@ -204,9 +206,11 @@ BLOCK;
      */
     protected function getAdControlBlockStart()
     {
+        $publisherId = trim($this->settings->getPublisherId(), '/');
         return <<< BLOCK
 <script type="text/javascript">
 googletag.cmd.push(function() {
+var ds = '/', key = ds + '{$publisherId}' + ds;
 BLOCK;
     }
 
@@ -247,12 +251,11 @@ BLOCK;
 
     private function buildAdControlBlock(AdUnitInterface $unit)
     {
-        $publisherId = trim($this->settings->getPublisherId(), '/');
         $sizes       = $this->printSizes($unit->getSizes());
         $divId       = $unit->getDivId();
         $path        = $unit->getPath();
         return <<< BLOCK
-\ngoogletag.defineSlot('/{$publisherId}/{$path}', {$sizes}, '{$divId}').setCollapseEmptyDiv(true, true).addService(googletag.pubads());
+\ngoogletag.defineSlot(key + '{$path}', {$sizes}, '{$divId}').setCollapseEmptyDiv(true, true).addService(googletag.pubads());
 BLOCK;
 
     }

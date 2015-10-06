@@ -60,12 +60,14 @@ Add this bundle to your application kernel:
 You will be needing a dfp_settings table:
 
     DROP TABLE IF EXISTS `dfp_settings`;
+    
     CREATE TABLE IF NOT EXISTS `dfp_settings` (
-      `id` int(11) NOT NULL,
+      `id` int(11) NOT NULL AUTO_INCREMENT,
       `modul` varchar(30) NOT NULL,
       `sub_modul` varchar(30) DEFAULT NULL,
-      `settings` text NOT NULL
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+      `settings` text NOT NULL,
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 2) How to Use in your views
 ---------------------------
