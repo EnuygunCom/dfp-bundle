@@ -199,4 +199,36 @@ class Settings extends TargetContainer
     {
         return trim($this->divClass . ' ' . (! empty($class) ? $class : ''));
     }
+
+    public function getSettings() {
+        $selectQuery = sprintf('SELECT * FROM dfp_settings');
+
+        $settings = $this->conn->fetchAll($selectQuery);
+
+        return $settings;
+    }
+
+    public function getSettingsById($id)
+    {
+        $selectQuery = 'SELECT * FROM dfp_settings WHERE id = :id';
+
+        $settings = $this->conn->fetchAssoc($selectQuery, array('id' => $id));
+
+        return $settings;
+    }
+
+    public function saveSettings($setting)
+    {
+        $id = $setting['id'];
+        $settings = json_encode($setting['settings']);
+        $response = $this->conn->executeUpdate('UPDATE dfp_settings SET settings = :settings WHERE id = :id LIMIT 1', compact('id', 'settings'));
+
+        // flush changes to memcached
+        foreach($setting['settings'] as $key => $value) {
+            $cacheKey = sprintf('dfp_settings.%s.%s.%s', $setting['modul'], $setting['sub_modul'], $key);
+            $this->memcached->set($cacheKey, $value ? 'true' : 'false', $this->cacheLifetime);
+        }
+
+        return $response;
+    }
 }

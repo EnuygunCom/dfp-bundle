@@ -75,7 +75,7 @@ class DfpExtension extends \Twig_Extension
      * @param array $targets
      * @return string
      */
-    public function addAdUnit($path, array $sizes, $class, array $targets = array())
+    public function addAdUnit($path, array $sizes, $class = null, array $targets = array())
     {
         if(! $this->settings->isActive($path, $targets, true))
             return '';
@@ -95,7 +95,7 @@ class DfpExtension extends \Twig_Extension
      * @param array $targets
      * @return string
      */
-    public function addScrollAdUnit($path, array $sizes, $class, array $targets = array())
+    public function addScrollAdUnit($path, array $sizes, $class = null, array $targets = array())
     {
         if(! $this->settings->isActive($path, $targets, true))
             return '';
@@ -115,7 +115,7 @@ class DfpExtension extends \Twig_Extension
      * @param array $targets
      * @return string
      */
-    public function addPageSkinAdUnit($path, array $sizes, $class, array $targets = array())
+    public function addPageSkinAdUnit($path, array $sizes, $class = null, array $targets = array())
     {
         if(! $this->settings->isActive($path, $targets, true))
             return '';
