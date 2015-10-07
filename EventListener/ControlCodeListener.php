@@ -29,6 +29,10 @@ class ControlCodeListener
      * @var Settings
      */
     protected $settings;
+    /**
+     * @var array
+     */
+    protected $_unitCheckList = array();
 
     /**
      * Constructor.
@@ -87,6 +91,39 @@ gads.src = (useSSL ? 'https:' : 'http:') +
 var node = document.getElementsByTagName('script')[0];
 node.parentNode.insertBefore(gads, node);
 })();
+</script>
+CONTROL;
+    }
+
+    /**
+     * Get the unit checker code block.
+     *
+     * @return string
+     */
+    protected function getUnitCheckerCode()
+    {
+        $checkList = json_encode($this->_unitCheckList);
+        $targets = $this->settings->getTargets();
+        $modul = $targets['modul'];
+        $sub_modul = empty($targets['sub_modul']) ? '-' : $targets['sub_modul'];
+
+        return <<< CONTROL
+<script type="text/javascript">
+googletag.cmd.push(function() {
+    var checkList = {$checkList};
+
+    $(function() {
+        var _checker = setTimeout(function() {
+            $.each(checkList, function(id, name) {
+                var isActive = $('#' + id).css('display') != 'none', action = isActive ? 'enable' : 'disable';
+
+                $.get('/_dfp/unit-checker/{$modul}/{$sub_modul}/' + name + '/' + action + '/', function(data) {/**/}, function(data) {/**/});
+            });
+        }, 5000);
+    });
+
+    console.log(checkList);
+});
 </script>
 CONTROL;
     }
@@ -232,9 +269,11 @@ BLOCK;
     private function buildAdControlBlocks()
     {
         $controlCode = $this->getAdControlBlockStart();
-
+        $this->_unitCheckList = array();
         $targets = array();
         foreach ($this->collection as $unit) {
+
+            $this->_unitCheckList[$unit->getDivId()] = $unit->getPath();
 
             foreach($unit->getTargets() as $_key => $_value) {
                 if(!array_key_exists($_key, $targets))
@@ -245,6 +284,10 @@ BLOCK;
         }
         $controlCode .= $this->getTargetsBlock($targets);
         $controlCode .= $this->getAdControlBlockEnd();
+
+        // TODO implement enable and disable decision maker here, we can not just implement a DFP code checker, because there might be some ad delays
+        //      and also this is not secure
+        // $controlCode .= $this->getUnitCheckerCode();
 
         return $controlCode;
     }

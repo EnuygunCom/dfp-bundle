@@ -111,3 +111,28 @@ You will be needing a dfp_settings table:
 
 
 Note: This bundle is inspired of NodrewDfpBundle.
+    
+    
+4) If you wish to use the unit checker
+--------------------------------------
+
+NOT: this is not safe, it is open for everyone, TODO a secure way to check the units
+    
+### Add following to your routing.yml:
+
+    enuygun_com_dfp_checker:
+        resource: "@EnuygunComDfpBundle/Controller/"
+        type:     annotation
+        prefix:   /_dfp/
+
+### Call to enable unit
+
+    {{ path('enuygun_com_dfp_unit_checker', {modul: 'your-modul-name', sub_modul: 'your-sub-modul-name', path: 'your-unit-path', action: 'enable'}) }}
+
+### Call to disable unit
+
+    {{ path('enuygun_com_dfp_unit_checker', {modul: 'your-modul-name', sub_modul: 'your-sub-modul-name', path: 'your-unit-path', action: 'disable'}) }}
+
+
+
+Note: This bundle is inspired of NodrewDfpBundle.
