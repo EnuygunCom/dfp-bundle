@@ -11,18 +11,19 @@ namespace EnuygunCom\DfpBundle\Model;
 
 class ScrollAdUnit extends AdUnit
 {
-    public function __construct($path, $sizes, $class, array $targets)
+    public function __construct($path, $sizes, $class, array $targets, $attrs)
     {
-        parent::__construct($path, $sizes, empty($class) ? 'scrolldown_ad' : $class, $targets);
+        parent::__construct($path, $sizes, empty($class) ? 'scrolldown_ad' : $class, $targets, $attrs);
     }
 
     public function output(Settings $settings)
     {
         $class  = $this->getClass($settings->getDivClass());
         $style  = $this->getStyles();
+        $attrs  = $this->getAttrsAsString();
 
-return <<< RETURN
-<div class="{$class}">
+        return <<< RETURN
+<div class="{$class}"{$attrs}>
 <div id="{$this->divId}">
 <a href="javascript:void(0)" class="scrolldown_ad_close">x</a>
 <script type="text/javascript">

@@ -75,12 +75,12 @@ class DfpExtension extends \Twig_Extension
      * @param array $targets
      * @return string
      */
-    public function addAdUnit($path, array $sizes, $class = null, array $targets = array())
+    public function addAdUnit($path, array $sizes, $class = null, array $targets = array(), $attrs = array())
     {
         if(! $this->settings->isActive($path, $targets, true))
             return '';
 
-        $unit = new AdUnit($path, $sizes, $class, $targets);
+        $unit = new AdUnit($path, $sizes, $class, $targets, $attrs);
         $this->collection->add($unit);
 
         return $unit->output($this->settings);
@@ -95,12 +95,12 @@ class DfpExtension extends \Twig_Extension
      * @param array $targets
      * @return string
      */
-    public function addScrollAdUnit($path, array $sizes, $class = null, array $targets = array())
+    public function addScrollAdUnit($path, array $sizes, $class = null, array $targets = array(), $attrs = array())
     {
         if(! $this->settings->isActive($path, $targets, true))
             return '';
 
-        $unit = new ScrollAdUnit($path, $sizes, $class, $targets);
+        $unit = new ScrollAdUnit($path, $sizes, $class, $targets, $attrs);
         $this->collection->add($unit);
 
         return $unit->output($this->settings);
@@ -115,12 +115,12 @@ class DfpExtension extends \Twig_Extension
      * @param array $targets
      * @return string
      */
-    public function addPageSkinAdUnit($path, array $sizes, $class = null, array $targets = array())
+    public function addPageSkinAdUnit($path, array $sizes, $class = null, array $targets = array(), $attrs = array())
     {
         if(! $this->settings->isActive($path, $targets, true))
             return '';
 
-        $unit = new PageSkinAdUnit($path, $sizes, $class, $targets);
+        $unit = new PageSkinAdUnit($path, $sizes, $class, $targets, $attrs);
         $this->collection->add($unit);
 
         return $unit->output($this->settings);

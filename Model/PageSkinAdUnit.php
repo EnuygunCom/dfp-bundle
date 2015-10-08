@@ -15,9 +15,10 @@ class PageSkinAdUnit extends AdUnit
     {
         $class  = $this->getClass($settings->getDivClass());
         $style  = $this->getStyles();
+        $attrs  = $this->getAttrsAsString();
 
-return <<< RETURN
-<div class="{$class}">
+        return <<< RETURN
+<div class="{$class}"{$attrs}>
 <div id="{$this->divId}">
 <script type="text/javascript">
 googletag.cmd.push(function() { googletag.display('{$this->divId}'); });

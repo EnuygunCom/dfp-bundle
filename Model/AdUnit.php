@@ -14,6 +14,7 @@ class AdUnit extends TargetContainer implements AdUnitInterface
     protected $path;
     protected $sizes;
     protected $class;
+    protected $attrs;
     protected $divId;
     protected $targets = array();
     /**
@@ -21,13 +22,15 @@ class AdUnit extends TargetContainer implements AdUnitInterface
      * @param array|null $sizes
      * @param string|null $class
      * @param array $targets
+     * @param array $attrs
      */
-    public function __construct($path, $sizes=null, $class=null, array $targets = array())
+    public function __construct($path, $sizes=null, $class=null, array $targets = array(), $attrs = array())
     {
         $this->setPath($path);
         $this->setSizes($sizes);
         $this->setClass($class);
         $this->setTargets($targets);
+        $this->setAttrs($attrs);
         $this->buildDivId();
     }
     /**
@@ -46,10 +49,10 @@ class AdUnit extends TargetContainer implements AdUnitInterface
     public function output(Settings $settings)
     {
         $class  = $this->getClass($settings->getDivClass());
-        $style  = $this->getStyles();
+        $attrs  = $this->getAttrsAsString();
 
         return <<< RETURN
-<div class="{$class}">
+<div class="{$class}"{$attrs}>
 <div id="{$this->divId}">
 <script type="text/javascript">
 googletag.cmd.push(function() { googletag.display('{$this->divId}'); });
@@ -215,6 +218,59 @@ RETURN;
     public function setClass($class)
     {
         $this->class = $class;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAttrsAsString()
+    {
+        if(empty($this->attrs))
+            return '';
+
+        $attrs = '';
+
+        foreach($this->attrs as $name => $value) {
+            $attrs.= sprintf(' %s="%s"', $name, $value);
+        }
+
+        return $attrs;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAttrs()
+    {
+        return $this->attrs;
+    }
+
+    /**
+     * @param mixed $attrs
+     * @return AdUnit
+     */
+    public function setAttrs($attrs)
+    {
+        $this->attrs = $attrs;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTargets()
+    {
+        return $this->targets;
+    }
+
+    /**
+     * @param array $targets
+     * @return AdUnit
+     */
+    public function setTargets($targets)
+    {
+        $this->targets = $targets;
+        return $this;
     }
 
 
