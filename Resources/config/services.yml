@@ -8,8 +8,6 @@ parameters:
     enuygun_com_dfp.default_div_class: ~
     enuygun_com_dfp.targets: [ ]
     enuygun_com_dfp.cache_lifetime: 300
-    enuygun_com_dfp.dbal_connection: @doctrine.dbal.default_connection
-    enuygun_com_dfp.memcached: @memcached_client
 
 services:
     enuygun_com_dfp.collection:
@@ -17,7 +15,7 @@ services:
 
     enuygun_com_dfp.settings:
         class: %enuygun_com_dfp.settings.class%
-        arguments: [%enuygun_com_dfp.publisher_id%, %enuygun_com_dfp.default_div_class%, %enuygun_com_dfp.targets%, %enuygun_com_dfp.cache_lifetime%, @kernel, %enuygun_com_dfp.dbal_connection%, %enuygun_com_dfp.memcached%]
+        arguments: [%enuygun_com_dfp.publisher_id%, %enuygun_com_dfp.default_div_class%, %enuygun_com_dfp.targets%, %enuygun_com_dfp.cache_lifetime%, @kernel, @doctrine.dbal.default_connection, @memcached_client]
 
     enuygun_com_dfp.control_code_listener:
         class: %enuygun_com_dfp.control_code_listener.class%
