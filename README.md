@@ -84,6 +84,9 @@ You will be needing a dfp_settings table:
 
     {{ dfp_ad_unit('some/campaign', [300, 250]) }}
     
+### Extended usage with class, target and attributes
+    {{ dfp_ad_unit('some/campaign', [300, 250], 'custom-class', {cutom: target}, { 'data-attr' : 'attribute-values'}) }}
+    
 ### Define Targets
 
     {{ dfp_targets({modul: 'modulName', sub_modul: 'subModulName'}) }}
@@ -107,13 +110,17 @@ You will be needing a dfp_settings table:
 ### PageSkin Ad Unit
 
     {{ dfp_scroll_ad_unit('EnuygunCom_1200x600', [1200, 600], 'page_skin') }}
-
-
-
-Note: This bundle is inspired of NodrewDfpBundle.
     
     
-4) If you wish to use the unit checker
+4) If you need to change the default dbal_connection or memcached client, just overwrite the settings service definition
+------------------------------------------------------------------------------------------------------------------------
+
+    enuygun_com_dfp.settings:
+        class: %enuygun_com_dfp.settings.class%
+        arguments: [%enuygun_com_dfp.publisher_id%, %enuygun_com_dfp.default_div_class%, %enuygun_com_dfp.targets%, %enuygun_com_dfp.cache_lifetime%, @kernel, @doctrine.dbal.v3_connection, @session.memcached]
+
+    
+5) If you wish to use the unit checker
 --------------------------------------
 
 NOT: this is not safe, it is open for everyone, TODO a secure way to check the units
