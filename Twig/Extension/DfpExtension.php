@@ -42,18 +42,24 @@ class DfpExtension extends \Twig_Extension
 
     /**
      * This method is used to disable dfp ads, should be called before any other dfp methods
+     * @return bool
      */
     public function disable()
     {
         $this->settings->setEnabled(false);
+
+        return true;
     }
 
     /**
      * This method is used to enable dfp ads, should be called before any other dfp methods
+     * @return bool
      */
     public function enable()
     {
         $this->settings->setEnabled(true);
+
+        return true;
     }
 
     /**

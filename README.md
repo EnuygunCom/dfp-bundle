@@ -95,9 +95,15 @@ You will be needing a dfp_settings table:
 
     {{ dfp_disable() }}
     
+    {# if you need to call outside the block #} 
+    {% set hide_all_ads = dfp_disable() %}
+    
 ### Enable Ad Units
 
     {{ dfp_enable() }}
+    
+    {# if you need to call outside the block #} 
+    {% set show_all_ads = dfp_enable() %}
     
     
 3) Enuygun Custom Ad Units
