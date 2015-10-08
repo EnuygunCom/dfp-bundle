@@ -33,7 +33,5 @@ class EnuygunComDfpExtension extends Extension
         $container->setParameter('enuygun_com_dfp.default_class', $config['default_class']);
         $container->setParameter('enuygun_com_dfp.targets', $config['targets']);
         $container->setParameter('enuygun_com_dfp.cache_lifetime', $config['cache_lifetime']);
-        $container->setParameter('enuygun_com_dfp.dbal_connection', $config['dbal_connection']);
-        $container->setParameter('enuygun_com_dfp.memcached', $config['memcached']);
     }
 }
