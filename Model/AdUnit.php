@@ -16,7 +16,6 @@ class AdUnit extends TargetContainer implements AdUnitInterface
     protected $class;
     protected $attrs;
     protected $divId;
-    protected $targets = array();
     /**
      * @param string $path
      * @param array|null $sizes
@@ -252,24 +251,6 @@ RETURN;
     public function setAttrs($attrs)
     {
         $this->attrs = $attrs;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getTargets()
-    {
-        return $this->targets;
-    }
-
-    /**
-     * @param array $targets
-     * @return AdUnit
-     */
-    public function setTargets($targets)
-    {
-        $this->targets = $targets;
         return $this;
     }
 
