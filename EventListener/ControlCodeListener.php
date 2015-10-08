@@ -233,7 +233,7 @@ BLOCK;
         }
         $env = $this->settings->getEnvironment();
 
-        return $block ."\ngoogletag.pubads().setTargeting('env', '$env');";
+        return $block;
     }
 
     /**
