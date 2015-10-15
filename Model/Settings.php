@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Kernel;
 
 class Settings extends TargetContainer
 {
-    const CacheLifeTime = 15 * 60; // 15 minutes
+    const CacheLifeTime = 900; //15 * 60 15 minutes
     protected $publisherId;
     protected $divClass;
     protected $enabled = true;
