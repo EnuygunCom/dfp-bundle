@@ -4,6 +4,7 @@ namespace EnuygunCom\DfpBundle\Twig\Extension;
 
 use EnuygunCom\DfpBundle\Model\AdUnit;
 use EnuygunCom\DfpBundle\Model\Collection;
+use EnuygunCom\DfpBundle\Model\MobileAdUnit;
 use EnuygunCom\DfpBundle\Model\PageSkinAdUnit;
 use EnuygunCom\DfpBundle\Model\ScrollAdUnit;
 use EnuygunCom\DfpBundle\Model\Settings;
@@ -37,6 +38,7 @@ class DfpExtension extends \Twig_Extension
             new \Twig_SimpleFunction('dfp_ad_unit', array($this, 'addAdUnit'), array('is_safe' => array('html'))),
             new \Twig_SimpleFunction('dfp_scroll_ad_unit', array($this, 'addScrollAdUnit'), array('is_safe' => array('html'))),
             new \Twig_SimpleFunction('dfp_page_skin_ad_unit', array($this, 'addPageSkinAdUnit'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('dfp_mobile_ad_unit', array($this, 'addMobileAdUnit'), array('is_safe' => array('html'))),
         );
     }
 
@@ -127,6 +129,26 @@ class DfpExtension extends \Twig_Extension
             return '';
 
         $unit = new PageSkinAdUnit($path, $sizes, $class, $targets, $attrs);
+        $this->collection->add($unit);
+
+        return $unit->output($this->settings);
+    }
+
+    /**
+     * Create an ad unit and return the source
+     *
+     * @param string $path
+     * @param array $sizes
+     * @param string $class
+     * @param array $targets
+     * @return string
+     */
+    public function addMobileAdUnit($path, array $sizes, $class = null, array $targets = array(), $attrs = array())
+    {
+        if(! $this->settings->isActive($path, $targets, true))
+            return '';
+
+        $unit = new MobileAdUnit($path, $sizes, $class, $targets, $attrs);
         $this->collection->add($unit);
 
         return $unit->output($this->settings);
