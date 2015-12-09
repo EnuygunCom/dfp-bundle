@@ -34,7 +34,12 @@ googletag.cmd.push(function() {
             $(function() {
                 if($('.ad-container').length > 0) {
                     $('.ad-container > div:first').each(function() {
-                        var parent = $(this).parent();
+                        var el = $(this);
+                        // don't show when there is no ad
+                        if(el.css('display') == 'none')
+                            return;
+
+                        var parent = el.parent();
                         if(parent.data('placement') === 'bottom') {
                             $('body').css('padding-bottom', parent.data('height'));
                             $('#feedbackButton').css('bottom', parent.data('height'));
