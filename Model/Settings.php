@@ -32,9 +32,9 @@ class Settings extends TargetContainer
      * @param $cacheLifetime
      * @param Kernel $kernel
      * @param Connection $conn
-     * @param \Memcached $memcached
+     * @param $memcached
      */
-    public function __construct($publisherId, $divClass, array $targets, array $env, $cacheLifetime, Kernel $kernel, Connection $conn, \Memcached $memcached)
+    public function __construct($publisherId, $divClass, array $targets, array $env, $cacheLifetime, Kernel $kernel, Connection $conn, $memcached)
     {
         $this->setPublisherId($publisherId);
         $this->setDivClass($divClass);
