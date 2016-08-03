@@ -33,6 +33,8 @@ class EnuygunComDfpExtension extends Extension
         $container->setParameter('enuygun_com_dfp.default_class', $config['default_class']);
         $container->setParameter('enuygun_com_dfp.targets', $config['targets']);
         $container->setParameter('enuygun_com_dfp.env', $config['env']);
+        $container->setParameter('enuygun_com_dfp.locale', $config['locale']);
+        $container->setParameter('enuygun_com_dfp.locales', $config['locales']);
         $container->setParameter('enuygun_com_dfp.cache_lifetime', $config['cache_lifetime']);
     }
 }

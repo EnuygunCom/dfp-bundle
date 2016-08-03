@@ -29,12 +29,14 @@ class Settings extends TargetContainer
      * @param int $divClass
      * @param array $targets
      * @param array $env
+     * @param $locale
+     * @param array $locales
      * @param $cacheLifetime
      * @param Kernel $kernel
      * @param Connection $conn
      * @param $memcached
      */
-    public function __construct($publisherId, $divClass, array $targets, array $env, $cacheLifetime, Kernel $kernel, Connection $conn, $memcached)
+    public function __construct($publisherId, $divClass, array $targets, array $env, $locale, array $locales, $cacheLifetime, Kernel $kernel, Connection $conn, $memcached)
     {
         $this->setPublisherId($publisherId);
         $this->setDivClass($divClass);
@@ -45,7 +47,7 @@ class Settings extends TargetContainer
 
         $this->env = $kernel->getEnvironment();
 
-        if(! in_array($this->env, $env) ) {
+        if(! in_array($this->env, $env) || (! empty($locales) && ! in_array($locale, $locales))) {
             $this->enabled = false;
         }
     }

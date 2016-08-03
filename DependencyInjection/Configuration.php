@@ -27,6 +27,8 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('default_class')->defaultValue('dfp-ad-unit')->end()
             ->scalarNode('cache_lifetime')->defaultValue(300)->end()
             ->variableNode('env')->defaultValue(array('prod'))->end()
+            ->variableNode('locale')->defaultValue(null)->end()
+            ->variableNode('locales')->defaultValue(array())->end()
             ->variableNode('targets')->end()
             ->end()
         ;
