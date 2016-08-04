@@ -10,6 +10,7 @@ namespace EnuygunCom\DfpBundle\Model;
 
 
 use Doctrine\DBAL\Connection;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Kernel;
 
 class Settings extends TargetContainer
@@ -36,7 +37,7 @@ class Settings extends TargetContainer
      * @param Connection $conn
      * @param $memcached
      */
-    public function __construct($publisherId, $divClass, array $targets, array $env, array $locale, $cacheLifetime, Kernel $kernel, Connection $conn, $memcached)
+    public function __construct($publisherId, $divClass, array $targets, array $env, array $locale, $cacheLifetime, Kernel $kernel, Connection $conn, $memcached, RequestStack $requestStack)
     {
         $this->setPublisherId($publisherId);
         $this->setDivClass($divClass);
@@ -46,7 +47,11 @@ class Settings extends TargetContainer
         $this->cacheLifetime = ! empty($cacheLifetime) ? $cacheLifetime : self::CacheLifeTime;
 
         $this->env = $kernel->getEnvironment();
-        $this->locale = $kernel->getContainer()->get('request')->getLocale();
+
+        $request = $requestStack->getCurrentRequest();
+
+        if(! empty($request))
+            $this->locale = $request->getLocale();
 
         if(! in_array($this->env, $env) || (! empty($locale) && ! in_array($this->locale, $locale))) {
             $this->enabled = false;

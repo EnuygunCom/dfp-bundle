@@ -127,7 +127,7 @@ You will be needing a dfp_settings table:
 
     enuygun_com_dfp.settings:
         class: %enuygun_com_dfp.settings.class%
-        arguments: [%enuygun_com_dfp.publisher_id%, %enuygun_com_dfp.default_div_class%,  %enuygun_com_dfp.targets%, %enuygun_com_dfp.env%, %enuygun_com_dfp.locale%, %enuygun_com_dfp.cache_lifetime%, @kernel, @doctrine.dbal.v3_connection, @session.memcached]
+        arguments: [%enuygun_com_dfp.publisher_id%, %enuygun_com_dfp.default_div_class%,  %enuygun_com_dfp.targets%, %enuygun_com_dfp.env%, %enuygun_com_dfp.locale%, %enuygun_com_dfp.cache_lifetime%, @kernel, @doctrine.dbal.v3_connection, @session.memcached, @request_stack]
 
     
 5) If you wish to use the unit checker
