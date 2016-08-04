@@ -19,6 +19,7 @@ class Settings extends TargetContainer
     protected $divClass;
     protected $enabled = true;
     protected $env = 'dev';
+    protected $locale = 'tr';
     protected $conn;
     protected $memcached;
     protected $cache = array();
@@ -30,13 +31,12 @@ class Settings extends TargetContainer
      * @param array $targets
      * @param array $env
      * @param $locale
-     * @param array $locales
      * @param $cacheLifetime
      * @param Kernel $kernel
      * @param Connection $conn
      * @param $memcached
      */
-    public function __construct($publisherId, $divClass, array $targets, array $env, $locale, array $locales, $cacheLifetime, Kernel $kernel, Connection $conn, $memcached)
+    public function __construct($publisherId, $divClass, array $targets, array $env, array $locale, $cacheLifetime, Kernel $kernel, Connection $conn, $memcached)
     {
         $this->setPublisherId($publisherId);
         $this->setDivClass($divClass);
@@ -46,8 +46,9 @@ class Settings extends TargetContainer
         $this->cacheLifetime = ! empty($cacheLifetime) ? $cacheLifetime : self::CacheLifeTime;
 
         $this->env = $kernel->getEnvironment();
+        $this->locale = $kernel->getContainer()->get('request')->getLocale();
 
-        if(! in_array($this->env, $env) || (! empty($locales) && ! in_array($locale, $locales))) {
+        if(! in_array($this->env, $env) || (! empty($locale) && ! in_array($this->locale, $locale))) {
             $this->enabled = false;
         }
     }
@@ -196,6 +197,11 @@ class Settings extends TargetContainer
     public function getEnvironment()
     {
         return $this->env;
+    }
+
+    public function getLocale()
+    {
+        return $this->locale;
     }
 
     public function applyClass($class)

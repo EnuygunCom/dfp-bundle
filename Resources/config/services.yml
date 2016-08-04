@@ -8,8 +8,7 @@ parameters:
     enuygun_com_dfp.default_div_class: ~
     enuygun_com_dfp.env: [ 'prod' ]
     enuygun_com_dfp.targets: [ ]
-    enuygun_com_dfp.locale: ~
-    enuygun_com_dfp.locales: [ ]
+    enuygun_com_dfp.locale: [ ]
     enuygun_com_dfp.cache_lifetime: 300
 
 services:
@@ -18,7 +17,7 @@ services:
 
     enuygun_com_dfp.settings:
         class: %enuygun_com_dfp.settings.class%
-        arguments: [%enuygun_com_dfp.publisher_id%, %enuygun_com_dfp.default_div_class%, %enuygun_com_dfp.targets%, %enuygun_com_dfp.env%, %enuygun_com_dfp.locale%, %enuygun_com_dfp.locales%, %enuygun_com_dfp.cache_lifetime%, @kernel, @doctrine.dbal.default_connection, @memcached_client]
+        arguments: [%enuygun_com_dfp.publisher_id%, %enuygun_com_dfp.default_div_class%, %enuygun_com_dfp.targets%, %enuygun_com_dfp.env%, %enuygun_com_dfp.locale%, %enuygun_com_dfp.cache_lifetime%, @kernel, @doctrine.dbal.default_connection, @memcached_client]
 
     enuygun_com_dfp.control_code_listener:
         class: %enuygun_com_dfp.control_code_listener.class%
