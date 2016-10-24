@@ -78,7 +78,7 @@ class ControlCodeListener
     protected function getMainControlCode()
     {
         return <<< CONTROL
-<script type="text/javascript">
+<script type="text/javascript" defer>
 var googletag = googletag || {};
 googletag.cmd = googletag.cmd || [];
 (function() {
@@ -108,7 +108,7 @@ CONTROL;
         $sub_modul = empty($targets['sub_modul']) ? '-' : $targets['sub_modul'];
 
         return <<< CONTROL
-<script type="text/javascript">
+<script type="text/javascript" defer>
 googletag.cmd.push(function() {
     var checkList = {$checkList};
 
@@ -142,7 +142,7 @@ CONTROL;
         $divId       = $unit->getDivId();
         $path        = $unit->getPath();
         return <<< BLOCK
-<script type="text/javascript">
+<script type="text/javascript" defer>
 googletag.cmd.push(function() {
 var _ds = '/', key = _ds + '{$publisherId}' + _ds;
 googletag.defineSlot(key + '{$path}', {$sizes}, '{$divId}').addService(googletag.pubads());
@@ -166,7 +166,7 @@ BLOCK;
         $divId       = $unit->getDivId();
         $path        = $unit->getPath();
         return <<< BLOCK
-<script type="text/javascript">
+<script type="text/javascript" defer>
 googletag.cmd.push(function() {
 var _ds = '/', key = _ds + '{$publisherId}' + _ds;
 googletag.defineOutOfPageSlot(key + '{$path}', '{$divId}').addService(googletag.pubads());
@@ -245,7 +245,7 @@ BLOCK;
     {
         $publisherId = trim($this->settings->getPublisherId(), '/');
         return <<< BLOCK
-<script type="text/javascript">
+<script type="text/javascript" defer>
 googletag.cmd.push(function() {
 var ds = '/', key = ds + '{$publisherId}' + ds;
 BLOCK;

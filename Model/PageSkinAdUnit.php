@@ -20,7 +20,7 @@ class PageSkinAdUnit extends AdUnit
         return <<< RETURN
 <div class="{$class}"{$attrs}>
 <div id="{$this->divId}">
-<script type="text/javascript">
+<script type="text/javascript" defer>
 googletag.cmd.push(function() { googletag.display('{$this->divId}'); });
 googletag.cmd.push(function() {
     $(function() {

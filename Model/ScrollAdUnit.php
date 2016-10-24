@@ -26,7 +26,7 @@ class ScrollAdUnit extends AdUnit
 <div class="{$class}"{$attrs}>
 <div id="{$this->divId}">
 <a href="javascript:void(0)" class="scrolldown_ad_close">x</a>
-<script type="text/javascript">
+<script type="text/javascript" defer>
 googletag.cmd.push(function() { googletag.display('{$this->divId}'); });
 googletag.cmd.push(function() {
     $(function() {

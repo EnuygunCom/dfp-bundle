@@ -53,7 +53,7 @@ class AdUnit extends TargetContainer implements AdUnitInterface
         return <<< RETURN
 <div class="{$class}"{$attrs}>
 <div id="{$this->divId}">
-<script type="text/javascript">
+<script type="text/javascript" defer>
 googletag.cmd.push(function() { googletag.display('{$this->divId}'); });
 </script>
 </div>
