@@ -141,7 +141,7 @@ RETURN;
      */
     protected function checkSize($size)
     {
-        if (is_array($size) && count($size) == 2 && isset($size[0]) && is_numeric($size[0]) && isset($size[1]) && is_numeric($size[1])) {
+        if (is_array($size) && count($size) == 2 && !empty($size[0]) && is_numeric($size[0]) && !empty($size[1]) && is_numeric($size[1])) {
             return true;
         }
         return false;
